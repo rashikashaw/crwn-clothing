@@ -18,7 +18,6 @@ export const SignUp = () => {
   const resetFormFeild = () => {
     setFormFeilds(defaultFormFeild);
   };
-
   const handleChange = (event) => {
     const { name, value } = event.target
     setFormFeilds({ ...formFeilds, [name]: value })
@@ -33,7 +32,7 @@ export const SignUp = () => {
     
     try {
       const { user } = await createAuthUserWithEmailAndPassword( email, password )
-      createUserDocumentFromAuth( user, { displayName } )
+      await createUserDocumentFromAuth( user, { displayName } );
       resetFormFeild()
     } catch (error) {
       if( error.code === 'auth/email-already-in-use' ){
