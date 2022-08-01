@@ -1,19 +1,11 @@
-import SHOP_DATA from '../../shopData.json';
-import { UserContext } from '../../contexts/user.context';
-import { ProductsContext } from '../../contexts/products.context';
-import { useContext } from 'react';
-import { ProductCard } from '../../components/Product-Card/ProductCard';
-import './shop.styles.scss'
-
+import { Route, Routes } from "react-router-dom";
+import { CategoriesPreview } from "../Categories-Preview/CategoriesPreview";
+import { Category } from "../Category/Category";
 export const Shop = () => {
-  const { products } = useContext(ProductsContext)
   return (
-    <div className='products-conatiner '>
-      {SHOP_DATA.map(({ id, name, price, imageUrl}) => (
-        <div key={id}>
-          <ProductCard name={name} imageUrl={imageUrl} price={price}/>
-        </div>
-      ))}
-    </div>
-  )
+    <Routes>
+      <Route index element={<CategoriesPreview />}/>
+      <Route path=':category' index element={<Category />}/>
+    </Routes>
+  );
 }

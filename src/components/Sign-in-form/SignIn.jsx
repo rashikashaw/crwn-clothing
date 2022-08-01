@@ -1,9 +1,9 @@
-import  { React, useState, useContext } from "react";
+import  { React, useState } from "react";
 import { FormInput } from "../Form-Input/FormInput";
 import "../Button/Button";
-import { Button } from "../Button/Button";
-import { SignInWithGooglePopUp, createUserDocumentFromAuth, SignInUserWithEmailAndPassword } from "../../Utils/Firebase/firebase.utils";
-import { UserContext } from "../../contexts/user.context";
+import Button, { BUTTON_TYPE_CLASSES }  from "../Button/Button";
+import { SignInWithGooglePopUp, SignInUserWithEmailAndPassword } from "../../Utils/Firebase/firebase.utils";
+
 
 
 const defaultFormFeild = {
@@ -71,7 +71,10 @@ export const SignIn = () => {
         />
         <div className="buttons-conatiner">
           <Button type="submit">Sign In</Button>
-          <Button type="button" buttonType="google" onClick={SignInWithGoogle}>Google Sign In</Button>
+          <Button 
+            type="button" 
+            buttonType={BUTTON_TYPE_CLASSES.google} 
+            onClick={SignInWithGoogle}>Google Sign In</Button>
         </div>
       </form >
     </div>
