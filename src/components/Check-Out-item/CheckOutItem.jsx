@@ -2,10 +2,10 @@ import {ReactComponent as QuantityIncreaseIcon} from '../../Assets/chevron-right
 import {ReactComponent as QuantityDecreaseIcon} from '../../Assets/chevron-left.svg'
 import { ReactComponent as CancelIcon } from '../../Assets/cancel.svg';
 import styled from '@emotion/styled';
-import { CartContext } from '../../contexts/cart.context';
-import { useContext } from 'react';
 import './CheckOutItem.styles.scss'
-
+import { useSelector, useDispatch } from 'react-redux';
+import { selectCartItems } from '../../store/cart/cart.selector';
+import { addItemToCart, clearItemFromCart, removeItemFromCart } from '../../store/cart/cart.actions';
 const RemoveIconWrapper = styled.div`
   width: 20px;
   height: 20px;
@@ -22,41 +22,13 @@ const RemoveIconWrapper = styled.div`
 `;
 
 export const CheckOutItem = ({ cartItem }) => {
-  const { cartItems, setCartItems } = useContext( CartContext );
-  const { id, imageUrl, price, name, quantity } = cartItem; 
-  const onIncrease = () => {
-    const updatedCartItems = cartItems.map((item) => {
-      if (id === item.id) {
-        return {
-          ...item,
-          quantity: item.quantity+1,
-        }
-      }
-      return item;
-    });
-    setCartItems(updatedCartItems);
-  };
-  const onDecrease = () => {
-    const updatedCartItems = cartItems.map((item) => {
-      if (id === item.id) {
-        return {
-          ...item,
-          quantity: item.quantity-1,
-        }
-      }
-      return item;
-    });
-    setCartItems(updatedCartItems);
-  };
+  const { imageUrl, price, name, quantity } = cartItem; 
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
 
-  const onCancel = () => {
-    const updatedCartItems = cartItems.filter((item) => {
-      return item.id !== id;
-    });
-    setCartItems(updatedCartItems);
-  }
-
-
+  const clearItemHandler = () => dispatch(clearItemFromCart(cartItems, cartItem));
+  const addItemHandler = () => dispatch(addItemToCart(cartItems, cartItem));
+  const removeItemHandler = () => dispatch(removeItemFromCart(cartItems, cartItem));
   return (
     <div className='checkout-item-container'>
       <div className='image-container'>
@@ -65,16 +37,16 @@ export const CheckOutItem = ({ cartItem }) => {
       <span className='name'>{name}</span>
       <span className='quantity'>
         <div className='arrow'>
-          <QuantityDecreaseIcon onClick={onDecrease}/>
+          <QuantityDecreaseIcon onClick={removeItemHandler}/>
         </div>
         <span>{quantity}</span>
         <div className='arrow'>
-          <QuantityIncreaseIcon onClick={onIncrease}/>
+          <QuantityIncreaseIcon onClick={addItemHandler}/>
         </div>
       </span>
       <span className='price'>{quantity*price}</span>
       <RemoveIconWrapper>
-        <CancelIcon className='remove-button' onClick={onCancel}/>
+        <CancelIcon className='remove-button' onClick={clearItemHandler}/>
       </RemoveIconWrapper>
     </div>
   );
