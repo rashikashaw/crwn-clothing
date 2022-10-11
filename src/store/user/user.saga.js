@@ -33,17 +33,6 @@ export function* signInWithEmail({ payload: { email, password } }) {
   }
 }
 
-export function* signUp({ payload: { email, password, displayName } }) {
-  try {
-    const {user} = yield call(createAuthUserWithEmailAndPassword, email, password);
-    yield put(signUpSuccess(user, { displayName }))
-  }
-  catch(error){
-    yield put(signInFailed(error));
-  }
-}
-
-
 export function* isUserAuthenticated() {
   try {
     const userAuth = yield call(getCurrentUser)
@@ -54,6 +43,18 @@ export function* isUserAuthenticated() {
   }
 }
 
+export function* signUp({ payload: { email, password, displayName } }) {
+  try {
+    const { user } = yield call(
+      createAuthUserWithEmailAndPassword,
+      email,
+      password
+    );
+    yield put(signUpSuccess(user, { displayName }));
+  } catch (error) {
+    yield put(signUpFailed(error));
+  }
+}
 
 export function* signOut() {
   try {
@@ -65,13 +66,8 @@ export function* signOut() {
   }
 }
 
-export function* signInAfterSignUp({user, additionalDetails}) {
-  try{
-    yield call(getSnapshotFromUserAuth, user, additionalDetails)
-  }
-  catch(error) {
-    yield put(signUpFailed(error))
-  }
+export function* signInAfterSignUp({ payload: { user, additionalDetails } }) {
+  yield call(getSnapshotFromUserAuth, user, additionalDetails);
 }
 
 export function* onGoogleSignInStart() {
@@ -86,19 +82,19 @@ export function* onCheckUserSessions() {
   yield takeLatest(USER_ACTION_TYPES.CHECK_USER_SESSION, isUserAuthenticated)
 }
 
-export function* onUserSignUpStart() {
+export function* onSignUpStart() {
   yield takeLatest(USER_ACTION_TYPES.SIGN_UP_START, signUp)
 }
 
-export function* onUserSignUpSuccess() {
+export function* onSignUpSuccess() {
   yield takeLatest(USER_ACTION_TYPES.SIGN_UP_SUCCESS, signInAfterSignUp)
 }
 
-export function* onUserSignOutStart() {
+export function* onSignOutStart() {
   yield takeLatest(USER_ACTION_TYPES.SIGN_OUT_START, signOut);
 }
 
 export  function* userSagas() {
-  yield all([call(onCheckUserSessions), call(onGoogleSignInStart), call(onEmailSignInStart), call(onUserSignUpStart), call(onUserSignUpSuccess), call(onUserSignOutStart) ]);
+  yield all([call(onCheckUserSessions), call(onGoogleSignInStart), call(onEmailSignInStart), call(onSignUpStart), call(onSignUpSuccess), call(onSignOutStart) ]);
 }
 

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../Utils/Firebase/firebase.utils";
 import { FormInput } from "../Form-Input/FormInput";
 import "./SignInForm.styles.scss"
 import "../Button/Button";
@@ -7,19 +6,21 @@ import Button from "../Button/Button";
 import { useDispatch } from "react-redux";
 import { signUpStart } from "../../store/user/user.actions";
 
-const defaultFormFeild = {
+const defaultFormFeilds = {
   displayName: '',
   email: '',
   password: '',
   confirmPassword: '',
 }
 export const SignUp = () => {
-  const [ formFeilds, setFormFeilds ] = useState(defaultFormFeild);
+  const [ formFeilds, setFormFeilds ] = useState(defaultFormFeilds);
   const { displayName, email, password, confirmPassword } = formFeilds;
   const dispatch = useDispatch();
+
   const resetFormFeild = () => {
-    setFormFeilds(defaultFormFeild);
+    setFormFeilds(defaultFormFeilds);
   };
+
   const handleChange = (event) => {
     const { name, value } = event.target
     setFormFeilds({ ...formFeilds, [name]: value })

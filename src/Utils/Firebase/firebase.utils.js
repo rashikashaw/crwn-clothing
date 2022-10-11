@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { 
   getAuth, 
   signInWithPopup,
-  GoogleAuthProvider, 
+  GoogleAuthProvider,
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
   signOut, 
@@ -31,7 +31,7 @@ export const SignInWithGooglePopUp = () => signInWithPopup(auth, googleProvider)
 
 export const db = getFirestore();
 
-export const addCollectionAndDocuments = async(collectionKey, objectsToAdd) => {
+export const addCollectionAndDocuments = async(collectionKey, objectsToAdd, field) => {
   const collectionRef = collection(db, collectionKey);
   const batch = writeBatch(db);
 
@@ -101,6 +101,6 @@ export const getCurrentUser = () => {
         resolve(userAuth);
       },
       reject
-    )
-  })
-}
+    );
+  });
+};
