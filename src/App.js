@@ -9,7 +9,7 @@ import { Shop } from './Routes/Shop/shop';
 import { CheckOut } from './Routes/Check-Out/CheckOut';
 import { useEffect } from "react";
 import { useDispatch } from 'react-redux';
-import { checkUserSessions, setCurrentUser } from './store/user/user.actions';
+import { checkUserSessions, setCurrentUser } from './redux/user/user.actions';
 
 
 const App = () => {

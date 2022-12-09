@@ -4,7 +4,7 @@ import "./SignInForm.styles.scss"
 import "../Button/Button";
 import Button from "../Button/Button";
 import { useDispatch } from "react-redux";
-import { signUpStart } from "../../store/user/user.actions";
+import { signUpStart } from "../../redux/user/user.actions";
 
 const defaultFormFeilds = {
   displayName: '',

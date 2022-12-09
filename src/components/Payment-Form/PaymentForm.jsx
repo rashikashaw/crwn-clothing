@@ -3,8 +3,8 @@ import { BUTTON_TYPE_CLASSES }  from "../Button/Button";
 import { PaymentFormContainer, FormContainer, PaymentButton } from "./PaymentForm.styles";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../../store/user/user.selector";
-import { selectCartTotal } from "../../store/cart/cart.selector";
+import { selectCurrentUser } from "../../redux/user/user.selector";
+import { selectCartTotal } from "../../redux/cart/cart.selector";
 
 export const PaymentForm = () => {
   const stripe = useStripe();

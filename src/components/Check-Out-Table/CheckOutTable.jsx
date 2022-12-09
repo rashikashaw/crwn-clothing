@@ -1,5 +1,5 @@
 import { CheckOutItem } from "../Check-Out-item/CheckOutItem";
-import { selectCartItems, selectCartTotal } from '../../store/cart/cart.selector'
+import { selectCartItems, selectCartTotal } from '../../redux/cart/cart.selector'
 import './CheckOutTable.styles.scss'
 import { useSelector } from "react-redux";
 import { PaymentForm } from "../Payment-Form/PaymentForm";

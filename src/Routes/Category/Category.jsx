@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { CategoryContainer, Title } from './Category.styles';
 import { useSelector } from "react-redux";
 import Spinner from "../../components/Spinner/Spinner";
-import { selectCategoriesMap } from "../../store/categories/category.selector";
-import { selectCategoriesIsLoading } from "../../store/categories/category.selector";
+import { selectCategoriesMap } from "../../redux/categories/category.selector";
+import { selectCategoriesIsLoading } from "../../redux/categories/category.selector";
 
 export const Category = () => {
   const { category } = useParams();

@@ -3,7 +3,7 @@ import  Button, { BUTTON_TYPE_CLASSES }  from '../Button/Button';
 import { CartItem } from "../Cart-Item/cartItem";
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectCartItems } from '../../store/cart/cart.selector';
+import { selectCartItems } from '../../redux/cart/cart.selector';
 
 
 export const CartDropdown = () => {

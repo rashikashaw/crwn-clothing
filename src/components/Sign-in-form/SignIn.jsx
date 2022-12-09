@@ -2,9 +2,9 @@ import  { React, useState } from "react";
 import { FormInput } from "../Form-Input/FormInput";
 import "../Button/Button";
 import Button, { BUTTON_TYPE_CLASSES }  from "../Button/Button";
-import { SignInWithGooglePopUp, SignInUserWithEmailAndPassword } from "../../Utils/Firebase/firebase.utils";
+import { SignInWithGooglePopUp, SignInUserWithEmailAndPassword } from "../../services/Firebase/firebase.utils";
 import { useDispatch } from "react-redux";
-import { emailSignInStart, googleSignInStart } from "../../store/user/user.actions";
+import { emailSignInStart, googleSignInStart } from "../../redux/user/user.actions";
 
 
 

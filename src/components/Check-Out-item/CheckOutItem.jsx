@@ -4,8 +4,8 @@ import { ReactComponent as CancelIcon } from '../../Assets/cancel.svg';
 import styled from '@emotion/styled';
 import './CheckOutItem.styles.scss'
 import { useSelector, useDispatch } from 'react-redux';
-import { selectCartItems } from '../../store/cart/cart.selector';
-import { addItemToCart, clearItemFromCart, removeItemFromCart } from '../../store/cart/cart.actions';
+import { selectCartItems } from '../../redux/cart/cart.selector';
+import { addItemToCart, clearItemFromCart, removeItemFromCart } from '../../redux/cart/cart.actions';
 const RemoveIconWrapper = styled.div`
   width: 20px;
   height: 20px;
